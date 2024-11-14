@@ -81,7 +81,7 @@ jobs:
           with:
             context: .
             push: true
-            tags: sharmina/basic-calculator_v1:latest  # Replace with your Docker Hub username and repo name
+            tags: sharmina/digitalclock_v1:latest  # Replace with your Docker Hub username and repo name
       
     deploy:
         runs-on: self-hosted
@@ -106,16 +106,16 @@ jobs:
                   echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                           
                   # Pull the latest Docker image
-                  docker pull sharmina/basic-calculator_v1:latest
+                  docker pull sharmina/digitalclock_v1:latest
               
                   # Stop and remove any existing container
                   
-                  docker stop basic-calculator || true
-                  docker rm basic-calculator || true
+                  docker stop digital-clock || true
+                  docker rm digital-clock || true
                           
               
                   # Run the new container
-                  docker run -d -p 3000:3000 --name basic-calculator sharmina/basic-calculator_v1:latest
+                  docker run -d -p 3000:3000 --name digital-clock sharmina/digitalclock_v1:latest
                   exit
                 EOF
     
