@@ -96,11 +96,11 @@ jobs:
             echo "${{ secrets.VM_SSH_KEY }}" > vm_key.pem
             chmod 600 vm_key.pem
               
-            - name: Deploy Docker container on VM
-              env:
-                VM_HOST: ${{ secrets.VM_HOST }}
-                VM_USER: ${{ secrets.VM_USER }}
-              run: |
+        - name: Deploy Docker container on VM
+          env:
+            VM_HOST: ${{ secrets.VM_HOST }}
+            VM_USER: ${{ secrets.VM_USER }}
+          run: |
                 ssh -vvv -tt -o StrictHostKeyChecking=no -i vm_key.pem $VM_USER@$VM_HOST << 'EOF'
                   # Log in to Docker Hub (on the VM)
                   echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
